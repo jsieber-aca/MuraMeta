@@ -3,6 +3,6 @@
 		$ = application.serviceFactory.getBean('muraScope').init('default');
 	}
 	if (not(isDefined("pluginConfig"))){
-		pluginConfig = $.getBean('pluginManager').getConfig('TwitterCards');
+		pluginConfig = $.getBean('pluginManager').getConfig('MuraMeta');
 	}
 </cfscript>
