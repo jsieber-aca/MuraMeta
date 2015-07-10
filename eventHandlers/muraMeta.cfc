@@ -88,18 +88,23 @@
       </cfcase>
 
       <cfdefaultcase>
-        <cfif len($.content().getImageURL())>
-          <cfimage action="info" source="#protocol##cgi.http_host##$.content().getImageURL()#" structname="thisAssocImage">
-          <cfif thisAssocImage.width GTE 280 and thisAssocImage.height GTE 150>
-            <cfset cardType = "summary_large_image">
-          <cfelseif thisAssocImage.width GTE 60 and thisAssocImage.height GTE 60>
-            <cfset cardType = "summary">
+          <cfif len($.content().getImageURL())>
+              <cftry>
+                  <cfimage action="info" source="#protocol##cgi.http_host##$.content().getImageURL()#" structName="thisAssocImage">
+                      <cfif thisAssocImage.width GTE 280 and thisAssocImage.height GTE 150>
+                          <cfset cardType = "summary_large_image">
+                      <cfelseif thisAssocImage.width GTE 60 and thisAssocImage.height GTE 60>
+                          <cfset cardType = "summary">
+                      <cfelse>
+                          <cfset incImage = false>
+                      </cfif>
+                  <cfcatch type="any">
+                      <cfset incImage = false>
+                  </cfcatch>
+              </cftry>
           <cfelse>
-            <cfset incImage = false>
+              <cfset incImage = false>
           </cfif>
-        <cfelse>
-          <cfset incImage = false>
-        </cfif>
 
         <cfset twitterMeta = '<meta name="twitter:card" content="#cardType#" />#NL#<meta name="twitter:site" content="#$.siteConfig().getValue("twitterHandle")#" />#NL#<meta name="twitter:title" content="#$.content().getHtmlTitle()#" />'>
 
