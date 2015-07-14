@@ -47,7 +47,7 @@
         </cfif>
 
         <cfif $.siteConfig().getValue("facebookID") neq ''>
-          <cfset openGraphMeta &= '  <meta property="fb:admins" content="#$.siteConfig().getValue("facebookID")#" />#NL#'>
+          <cfset openGraphMeta &= '  <meta property="fb:app_id" content="#$.siteConfig().getValue("facebookID")#" />#NL#'>
         </cfif>
       </cfdefaultcase>
     </cfswitch>
