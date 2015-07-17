@@ -43,11 +43,11 @@
         <cfset openGraphMeta &= '<meta property="article:modified_time" content="#DateFormat($.content().getLastUpdate(), "yyyy-MM-dd")#T#TimeFormat($.content().getLastUpdate(), "hh:mm:00")#+Z" />'>
 
         <cfif len($.content().getImageURL())>
-          <cfset openGraphMeta &= '  <meta property="og:image" content="#protocol##cgi.http_host##$.content().getImageURL()#" />#NL#'>
+          <cfset openGraphMeta &= '  <meta property="og:image" content="#protocol##cgi.http_host##$.content().getImageURL(size='large')#" />#NL#'>
         </cfif>
 
         <cfif $.siteConfig().getValue("facebookID") neq ''>
-          <cfset openGraphMeta &= '  <meta property="fb:admins" content="#$.siteConfig().getValue("facebookID")#" />#NL#'>
+          <cfset openGraphMeta &= '  <meta property="fb:app_id" content="#$.siteConfig().getValue("facebookID")#" />#NL#'>
         </cfif>
       </cfdefaultcase>
     </cfswitch>
