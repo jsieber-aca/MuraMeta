@@ -7,7 +7,9 @@
 
   <cffunction name="onRenderStart" output="false" returntype="any">
       <cfargument name="$">
-      <cfset var metaTags = makeTwitterMeta($) & makeFacebookOpenGraphMeta($) />
+	  <cfif $.content('subtype') neq 'Utility'>
+      	<cfset var metaTags = makeTwitterMeta($) & makeFacebookOpenGraphMeta($) />
+	  </cfif>
       <cfHTMLHead text='#metaTags#'>
   </cffunction>
 
