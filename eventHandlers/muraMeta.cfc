@@ -9,8 +9,9 @@
       <cfargument name="$">
 	  <cfif $.content('subtype') neq 'Utility'>
       	<cfset var metaTags = makeTwitterMeta($) & makeFacebookOpenGraphMeta($) />
+	  
+      	<cfHTMLHead text='#metaTags#'>
 	  </cfif>
-      <cfHTMLHead text='#metaTags#'>
   </cffunction>
 
   <cffunction name="makeFacebookOpenGraphMeta" description="Creates valid Facebook Open Graph metadata output" output="true">
