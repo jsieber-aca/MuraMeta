@@ -28,9 +28,9 @@
         <cfset openGraphMeta = '  <meta property="og:title" content="#$.content().getHtmlTitle()#" />#NL#  <meta property="og:type" content="article" />#NL#'>
 
         <cfif len(stripHTMLandTruncate($.content().getValue("summary")))>
-          <cfset openGraphMeta &= '  <meta property="og:description" content="#trim(stripHTMLAndTruncate($.setDynamicContent($.content('summary'))))#" />#NL#'>
+          <cfset openGraphMeta &= '  <meta property="og:description" content="#trim(stripHTMLAndTruncate($.content('summary')))#" />#NL#'>
         <cfelseif len(stripHTMLandTruncate($.content().getValue("body")))>
-          <cfset openGraphMeta &= '  <meta property="og:description" content="#trim(stripHTMLAndTruncate($.setDynamicContent($.content('body'))))#" />#NL#'>
+          <cfset openGraphMeta &= '  <meta property="og:description" content="#trim(stripHTMLAndTruncate($.content('body')))#" />#NL#'>
         <cfelse>
           <cfset openGraphMeta &='  <meta property="og:description" content="#$.siteConfig().getValue("facebookDefaultDescription")#" />#NL#'>
         </cfif>
@@ -75,9 +75,9 @@
 
         <cfset twitterMeta = '<meta name="twitter:card" content="#cardType#" />#NL#<meta name="twitter:site" content="#$.siteConfig().getValue("twitterHandle")#" />#NL#<meta name="twitter:title" content="#$.content().getHtmlTitle()#" />'>
         <cfif len(stripHTMLandTruncate($.content().getValue("summary")))>
-          <cfset twitterMeta &='<meta name="twitter:description" content="#trim(stripHTMLAndTruncate($.setDynamicContent($.content('summary'))))#" />'>
+          <cfset twitterMeta &='<meta name="twitter:description" content="#trim(stripHTMLAndTruncate($.content('summary')))#" />'>
         <cfelseif len(stripHTMLandTruncate($.content().getValue("body")))>
-          <cfset twitterMeta &='<meta name="twitter:description" content="#trim(stripHTMLAndTruncate($.setDynamicContent($.content('body'))))#" />'>
+          <cfset twitterMeta &='<meta name="twitter:description" content="#trim(stripHTMLAndTruncate($.content('body')))#" />'>
         <cfelse>
           <cfset twitterMeta &='<meta name="twitter:description" content="#$.siteConfig().getValue("twitterDefaultDescription")#" />'>
         </cfif>
@@ -112,9 +112,9 @@
         <cfset twitterMeta = '<meta name="twitter:card" content="#cardType#" />#NL#<meta name="twitter:site" content="#$.siteConfig().getValue("twitterHandle")#" />#NL#<meta name="twitter:title" content="#$.content().getHtmlTitle()#" />'>
 
         <cfif len(stripHTMLandTruncate($.content().getValue("summary")))>
-          <cfset twitterMeta &='<meta name="twitter:description" content="#trim(stripHTMLAndTruncate($.setDynamicContent($.content('summary'))))#" />'>
+          <cfset twitterMeta &='<meta name="twitter:description" content="#trim(stripHTMLAndTruncate($.content('summary')))#" />'>
         <cfelseif len(stripHTMLandTruncate($.content().getValue("body")))>
-          <cfset twitterMeta &='<meta name="twitter:description" content="#trim(stripHTMLAndTruncate($.setDynamicContent($.content('body'))))#" />'>
+          <cfset twitterMeta &='<meta name="twitter:description" content="#trim(stripHTMLAndTruncate($.content('body')))#" />'>
         <cfelse>
           <cfset twitterMeta &='<meta name="twitter:description" content="#$.siteConfig().getValue("twitterDefaultDescription")#" />'>
         </cfif>
@@ -133,6 +133,7 @@
         <cfset str = reReplaceNoCase(str, "<.*?>","","all")>
         <cfset str = reReplaceNoCase(str, "^.*?>","")>
         <cfset str = reReplaceNoCase(str, "<.*$","")>
+		<cfset str = reReplaceNoCase(str, "\[mura\](.*?)\[\/mura\]"," ","all")>
         <cfset str = trim(str)>
 		<cfset str = left(str, 225)>
         <cfset str = xmlformat(str)>
